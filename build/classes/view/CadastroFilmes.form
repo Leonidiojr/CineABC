@@ -41,17 +41,29 @@
               <Group type="102" attributes="0">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="130" max="-2" attributes="0"/>
+                          <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="cadastroFilmeLabelCodigoFilme" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="cadastroFilmeLabelNomeFilme" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="cadastroFilmeLabelGenero" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="cadastroFilmeLabelIdioma" alignment="0" min="-2" pref="41" max="-2" attributes="0"/>
-                              <Component id="cadastroFilmeLabelDuracao" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="cadastroFilmeLabelClassificacaoIndicativa" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="cadastroFilmeBtnConfirmar" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Group type="102" attributes="0">
+                                  <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="cadastroFilmeLabelNomeFilme" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="cadastroFilmeLabelGenero" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="cadastroFilmeLabelIdioma" alignment="0" min="-2" pref="41" max="-2" attributes="0"/>
+                                      <Component id="cadastroFilmeLabelCodigoFilme" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="cadastroFilmeLabelDuracao" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="cadastroFilmeBtnConfirmar" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace min="-2" pref="53" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="1" attributes="0">
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="cadastroFilmeLabelClassificacaoIndicativa" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                              </Group>
                           </Group>
-                          <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="cadastroFilmeComboBoxClassificacaoIndicativa" max="32767" attributes="0"/>
                               <Component id="cadastroFilmeComboBoxIdioma" alignment="0" max="32767" attributes="0"/>
@@ -60,10 +72,6 @@
                               <Component id="cadastroFilmeTextfieldGenero" alignment="0" max="32767" attributes="0"/>
                               <Component id="cadastroFilmeTextfieldDuracao" alignment="0" max="32767" attributes="0"/>
                           </Group>
-                      </Group>
-                      <Group type="102" attributes="0">
-                          <EmptySpace min="-2" pref="130" max="-2" attributes="0"/>
-                          <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace min="-2" pref="94" max="-2" attributes="0"/>
@@ -105,9 +113,9 @@
                       <Component id="cadastroFilmeComboBoxClassificacaoIndicativa" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="cadastroFilmeLabelClassificacaoIndicativa" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="74" max="32767" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="cadastroFilmeBtnConfirmar" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+                  <EmptySpace pref="44" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>

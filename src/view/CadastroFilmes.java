@@ -113,26 +113,31 @@ public class CadastroFilmes extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
+                        .addGap(130, 130, 130)
+                        .addComponent(jLabel7))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(cadastroFilmeLabelCodigoFilme)
-                            .addComponent(cadastroFilmeLabelNomeFilme)
-                            .addComponent(cadastroFilmeLabelGenero)
-                            .addComponent(cadastroFilmeLabelIdioma, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cadastroFilmeLabelDuracao)
-                            .addComponent(cadastroFilmeLabelClassificacaoIndicativa)
-                            .addComponent(cadastroFilmeBtnConfirmar))
-                        .addGap(21, 21, 21)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(cadastroFilmeLabelNomeFilme)
+                                    .addComponent(cadastroFilmeLabelGenero)
+                                    .addComponent(cadastroFilmeLabelIdioma, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(cadastroFilmeLabelCodigoFilme)
+                                    .addComponent(cadastroFilmeLabelDuracao)
+                                    .addComponent(cadastroFilmeBtnConfirmar))
+                                .addGap(53, 53, 53))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(cadastroFilmeLabelClassificacaoIndicativa)
+                                .addGap(18, 18, 18)))
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(cadastroFilmeComboBoxClassificacaoIndicativa, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(cadastroFilmeComboBoxIdioma, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(cadastroFilmeTextfieldCodigoFilme)
                             .addComponent(cadastroFilmeTextfieldNomeFilme)
                             .addComponent(cadastroFilmeTextfieldGenero)
-                            .addComponent(cadastroFilmeTextfieldDuracao)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(130, 130, 130)
-                        .addComponent(jLabel7)))
+                            .addComponent(cadastroFilmeTextfieldDuracao))))
                 .addGap(94, 94, 94))
         );
         jPanel1Layout.setVerticalGroup(
@@ -164,9 +169,9 @@ public class CadastroFilmes extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cadastroFilmeComboBoxClassificacaoIndicativa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cadastroFilmeLabelClassificacaoIndicativa))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 74, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addComponent(cadastroFilmeBtnConfirmar)
-                .addGap(20, 20, 20))
+                .addContainerGap(44, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -183,28 +188,20 @@ public class CadastroFilmes extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
     
-    String[] informacoesCadastroFilme = new String [4];
+    String[] informacoesCadastroFilme = new String [1];
     String[][] informacoesFilmesCadastrados = new String[20][6]; 
-    //int duracaoFilmeCalculo = 0; //JAVA FREAK
     
     private void cadastroFilmeBtnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastroFilmeBtnConfirmarActionPerformed
-        // Todo o código referente ao botão "confirmar":
-        
-        informacoesCadastroFilme[0] = cadastroFilmeTextfieldCodigoFilme.getText();
-        informacoesCadastroFilme[1] = cadastroFilmeTextfieldNomeFilme.getText();
-        informacoesCadastroFilme[2] = cadastroFilmeTextfieldGenero.getText();
-        
-        informacoesCadastroFilme[3] = cadastroFilmeTextfieldDuracao.getText();
+        // TODO O CÓDIGO RELATIVO AO BOTÃO "Confirmar":
+  
+        informacoesCadastroFilme[0] = cadastroFilmeTextfieldDuracao.getText();
         String texto = cadastroFilmeTextfieldDuracao.getText();
         try{
             int valorEmInteiro = Integer.parseInt(texto);
-            //duracaoFilmeCalculo = valorEmInteiro; //JAVA FREAK
             
         }catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(null, "O campo referente a duração do filme não foi preenchido corretamente", null, WIDTH);
-            System.out.println("O texto não pôde ser convertido para um valor inteiro.");
         }
-        //System.out.println(duracaoFilmeCalculo); //JAVA FREAK
         
         if(cadastroFilmeComboBoxIdioma.getSelectedItem().equals("<Selecione uma das opções>")){
             JOptionPane.showMessageDialog(null, "O campo referente ao idioma não foi preenchido corretamente", null, WIDTH);
@@ -212,19 +209,55 @@ public class CadastroFilmes extends javax.swing.JFrame {
         
         if(cadastroFilmeComboBoxClassificacaoIndicativa.getSelectedItem().equals("<Selecione uma das opções>")){
             JOptionPane.showMessageDialog(null, "O campo referente a classificação indicativa não foi preenchido corretamente", null, WIDTH);
-        }
-             
-        //SALVAR DADOS NA  MATRIZ PARA CRIAR UM FILME
+        }   
+        //SALVANDO DADOS NA  MATRIZ PARA CRIAR UM FILME:
         for (int i = 0; i < informacoesFilmesCadastrados.length; i++) {
             
+            informacoesFilmesCadastrados[i][0]=cadastroFilmeTextfieldCodigoFilme.getText();
+            informacoesFilmesCadastrados[i][1]=cadastroFilmeTextfieldNomeFilme.getText();
+            informacoesFilmesCadastrados[i][2]=cadastroFilmeTextfieldGenero.getText();
             
+            //O que foi selecionado na comboBox idioma?
+            if(cadastroFilmeComboBoxIdioma.getSelectedItem().equals("Áudio Original")){
+                informacoesFilmesCadastrados[i][3]= "Áudio Original";    
+            }
+            if(cadastroFilmeComboBoxIdioma.getSelectedItem().equals("Dublado")){
+                informacoesFilmesCadastrados[i][3]= "Dublado"; 
+            }
+           if(cadastroFilmeComboBoxIdioma.getSelectedItem().equals("Legendado")){
+               informacoesFilmesCadastrados[i][3]= "Legendado";
+            }
             
+           informacoesFilmesCadastrados[i][4]= cadastroFilmeTextfieldDuracao.getText();
+            
+            //O que foi selecionado na comboBox Classificação Indicativa?
+            if(cadastroFilmeComboBoxClassificacaoIndicativa.getSelectedItem().equals("Livre")){
+                informacoesFilmesCadastrados[i][5]= "Livre";
+            }
+            if(cadastroFilmeComboBoxClassificacaoIndicativa.getSelectedItem().equals("10")){
+                informacoesFilmesCadastrados[i][5]= "10";
+            }
+            if(cadastroFilmeComboBoxClassificacaoIndicativa.getSelectedItem().equals("12")){
+                informacoesFilmesCadastrados[i][5]= "12";
+            }
+            if(cadastroFilmeComboBoxClassificacaoIndicativa.getSelectedItem().equals("14")){
+                informacoesFilmesCadastrados[i][5]= "Livre";
+            }
+            if(cadastroFilmeComboBoxClassificacaoIndicativa.getSelectedItem().equals("16")){
+                informacoesFilmesCadastrados[i][5]= "16";
+            }
+            if(cadastroFilmeComboBoxClassificacaoIndicativa.getSelectedItem().equals("18")){
+                informacoesFilmesCadastrados[i][5]= "Livre";
+            }            
+        }
+        
+        /*for(int i = 0;i<informacoesFilmesCadastrados.length; i++){
+            //TESTE EM CONSOLE
             for (int j = 0; j < informacoesFilmesCadastrados[i].length; j++) {
-                
-                
-                
+                System.out.println(informacoesFilmesCadastrados[i][j]);
             }
         }
+        */
         
     }//GEN-LAST:event_cadastroFilmeBtnConfirmarActionPerformed
 
