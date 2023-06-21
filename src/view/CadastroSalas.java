@@ -14,11 +14,13 @@ public class CadastroSalas extends javax.swing.JFrame {
         model.setNumRows(0);
         String[] coluna = new String[4];
         for (int i = 0; i < Salas.listaSalasCadastradas.length; i++) {
-            coluna[0] = String.valueOf(tabelaSalas[i][0]);
-            coluna[1] = String.valueOf(tabelaSalas[i][1]);
-            coluna[2] = String.valueOf(tabelaSalas[i][2]);
-            coluna[3] = String.valueOf(tabelaSalas[i][1]*tabelaSalas[i][2]);
-            model.addRow(coluna);
+            if (tabelaSalas[i][1]>0){
+                coluna[0] = String.valueOf(tabelaSalas[i][0]);
+                coluna[1] = String.valueOf(tabelaSalas[i][1]);
+                coluna[2] = String.valueOf(tabelaSalas[i][2]);
+                coluna[3] = String.valueOf(tabelaSalas[i][1]*tabelaSalas[i][2]);                
+                model.addRow(coluna);
+            }            
         }
     }
     @SuppressWarnings("unchecked")
@@ -673,8 +675,7 @@ public class CadastroSalas extends javax.swing.JFrame {
                     .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
 
-        cadastroSalaTextFieldNSala.setEditable(false);
-        cadastroSalaTextFieldNSala.setText("0");
+        cadastroSalaTextFieldNSala.setText("1");
         cadastroSalaTextFieldNSala.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cadastroSalaTextFieldNSalaActionPerformed(evt);
@@ -706,7 +707,6 @@ public class CadastroSalas extends javax.swing.JFrame {
         });
 
         cadastroSalaBtnSalvar.setText("Salvar");
-        cadastroSalaBtnSalvar.setEnabled(false);
         cadastroSalaBtnSalvar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cadastroSalaBtnSalvarActionPerformed(evt);
@@ -815,12 +815,8 @@ public class CadastroSalas extends javax.swing.JFrame {
             Salas.listaSalasCadastradas[contador][1] = nColunasInt;
             Salas.listaSalasCadastradas[contador][2] = nLinhasInt;
             contador++;
-            /*for(int i = 0;i<Salas.listaSalasCadastradas.length; i++){
-                for (int j = 0; j < Salas.listaSalasCadastradas[i].length; j++) {
-                    System.out.println(Salas.listaSalasCadastradas[i][j]);
-                }
-            }*/
-                       
+            CarregaSalas();
+                             
         }
         catch(NumberFormatException e)
         {
@@ -833,6 +829,23 @@ public class CadastroSalas extends javax.swing.JFrame {
         } 
     }//GEN-LAST:event_cadastroSalaBtnSalvarActionPerformed
 
+    private void CarregaSalas(){
+        
+        int[][] tabelaSalas = Salas.listaSalasCadastradas;
+        DefaultTableModel model= (DefaultTableModel) jTable1.getModel();
+        model.setNumRows(0);
+        String[] coluna = new String[3];
+        for (int i = 0; i < Salas.QuantidadeSalasCadastradasDisponiveis(); i++) {
+            if (tabelaSalas[i][0] >= 0){
+                coluna[0] = String.valueOf(tabelaSalas[i][0]);
+                coluna[1] = String.valueOf(tabelaSalas[i][1]);
+                coluna[2] = String.valueOf(tabelaSalas[i][2]);
+                model.addRow(coluna);
+            }
+        } 
+    }
+    
+       
     private void cadastroSalaTextFieldNSalaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastroSalaTextFieldNSalaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cadastroSalaTextFieldNSalaActionPerformed
@@ -962,3 +975,4 @@ public class CadastroSalas extends javax.swing.JFrame {
     private javax.swing.JToggleButton jToggleButton9;
     // End of variables declaration//GEN-END:variables
 }
+

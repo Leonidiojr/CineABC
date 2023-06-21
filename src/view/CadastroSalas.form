@@ -1177,8 +1177,7 @@
           <SubComponents>
             <Component class="javax.swing.JTextField" name="cadastroSalaTextFieldNSala">
               <Properties>
-                <Property name="editable" type="boolean" value="false"/>
-                <Property name="text" type="java.lang.String" value="0"/>
+                <Property name="text" type="java.lang.String" value="1"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cadastroSalaTextFieldNSalaActionPerformed"/>
@@ -1222,7 +1221,6 @@
             <Component class="javax.swing.JButton" name="cadastroSalaBtnSalvar">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Salvar"/>
-                <Property name="enabled" type="boolean" value="false"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cadastroSalaBtnSalvarActionPerformed"/>

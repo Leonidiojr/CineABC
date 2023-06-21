@@ -20,7 +20,7 @@ public class Salas {
         linhas = listaSalasCadastradas.length;
         colunas =4;
         salas = 0;
-                      
+                                      
         for (int i = 0; i < linhas; i++) {            
             listaSalasCadastradas[i][0] = i;
             listaSalasCadastradas[i][1] = 10;
@@ -41,7 +41,7 @@ public class Salas {
         salas = 0;
         cadeiras = 0;
         for (int i = 0; i < 10; i++) {
-            if (listaSalasCadastradas[i][0] != 0)  {                    
+            if (listaSalasCadastradas[i][1] != 0)  {                    
                 salas = salas + 1;    
                 cadeiras = listaSalasCadastradas[i][1] * listaSalasCadastradas[i][2];
             }                                                                    

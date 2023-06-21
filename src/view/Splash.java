@@ -21,13 +21,13 @@ public class Splash extends javax.swing.JFrame {
      */
     public Splash() {
         initComponents();                
-        Salas.PreencheListaAtualSalasCadastradas();
-        
+             
         
         //Preenche com dados aleatorios
-        //control.Filmes.PreencheListaAtualFilmesCadastrados();        
-        //control.Sessoes.PreencheListaSessoes();
-        //control.Cadeiras.PreencheAleatorio();
+        control.Salas.PreencheListaAtualSalasCadastradas();
+        control.Filmes.PreencheListaAtualFilmesCadastrados();        
+        control.Sessoes.PreencheListaSessoes();
+        control.Cadeiras.PreencheAleatorio();
         
         
     }

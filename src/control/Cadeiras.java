@@ -31,7 +31,7 @@ public class Cadeiras {
       colunas = 10; 
       quantCadeira = 0;
 
-      for (int i = 0; i < 10; i++) {            
+      for (int i = 0; i < linhas; i++) {            
           for (int j= 0; j<50;j++){
               if ((j % (i+1)) ==0) {
                   cadeiras[i][j] = 0;
@@ -88,10 +88,14 @@ public class Cadeiras {
     public static int QuantidadeAtualCadeirasLivres(int codigoSala) {
         
         int quantCadeira;
+        int TotalCadeiras;
         
-        quantCadeira = 0;                                
-        for (int i = codigoSala; i < codigoSala+1; i++) {            
-            for (int j = 0; j<50;j++){                
+        quantCadeira = 0;     
+        TotalCadeiras = 0;
+        
+        for (int i = codigoSala; i < codigoSala+1; i++) {                        
+            TotalCadeiras = Salas.listaSalasCadastradas[i][1]*Salas.listaSalasCadastradas[i][2];
+            for (int j = 0; j<TotalCadeiras;j++){                
                 //System.out.println( cadeiras[i][j]);
                 if (cadeiras[i][j] == 0) {                    
                     quantCadeira = quantCadeira + 1;                        
