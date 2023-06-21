@@ -1,6 +1,9 @@
 package view;
 
+import control.Filmes;
+import java.awt.Point;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -16,8 +19,14 @@ public class CadastroFilmes extends javax.swing.JFrame {
     /**
      * Creates new form cadastroFilme
      */
+    String[][] filmesCadastrados = new String[1][6];        
+    
     public CadastroFilmes() {
-        initComponents();
+        
+        initComponents();        
+        carregaFilmes();
+        LimpaControles();
+
     }
 
     /**
@@ -30,61 +39,36 @@ public class CadastroFilmes extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        cadastroFilmeBtnConfirmar = new javax.swing.JButton();
-        cadastroFilmeLabelCodigoFilme = new javax.swing.JLabel();
-        cadastroFilmeLabelNomeFilme = new javax.swing.JLabel();
-        cadastroFilmeLabelGenero = new javax.swing.JLabel();
-        cadastroFilmeLabelIdioma = new javax.swing.JLabel();
-        cadastroFilmeLabelDuracao = new javax.swing.JLabel();
-        cadastroFilmeLabelClassificacaoIndicativa = new javax.swing.JLabel();
-        cadastroFilmeComboBoxClassificacaoIndicativa = new javax.swing.JComboBox<>();
-        jLabel7 = new javax.swing.JLabel();
-        cadastroFilmeComboBoxIdioma = new javax.swing.JComboBox<>();
-        cadastroFilmeTextfieldCodigoFilme = new javax.swing.JTextField();
+        jPanel2 = new javax.swing.JPanel();
+        cadastroFilmeTextfieldDuracao = new javax.swing.JTextField();
         cadastroFilmeTextfieldNomeFilme = new javax.swing.JTextField();
         cadastroFilmeTextfieldGenero = new javax.swing.JTextField();
-        cadastroFilmeTextfieldDuracao = new javax.swing.JTextField();
+        cadastroFilmeComboBoxIdioma = new javax.swing.JComboBox<>();
+        cadastroFilmeComboBoxClassificacaoIndicativa = new javax.swing.JComboBox<>();
+        cadastroFilmeLabelNomeFilme = new javax.swing.JLabel();
+        cadastroFilmeLabelGenero = new javax.swing.JLabel();
+        cadastroFilmeLabelCodigoFilme = new javax.swing.JLabel();
+        cadastroFilmeLabelDuracao = new javax.swing.JLabel();
+        cadastroFilmeLabelClassificacaoIndicativa = new javax.swing.JLabel();
+        cadastroFilmeLabelIdioma = new javax.swing.JLabel();
+        cadastroFilmeBtnConfirmar = new javax.swing.JButton();
+        cadastroFilmeBtnConfirmar1 = new javax.swing.JButton();
+        cadastroFilmeTextfieldCodigoFilme = new javax.swing.JTextField();
+        jPanel3 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jButton5 = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Cine ABC");
+        setResizable(false);
 
-        cadastroFilmeBtnConfirmar.setText("Confirmar");
-        cadastroFilmeBtnConfirmar.addActionListener(new java.awt.event.ActionListener() {
+        cadastroFilmeTextfieldDuracao.setText("120");
+        cadastroFilmeTextfieldDuracao.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cadastroFilmeBtnConfirmarActionPerformed(evt);
-            }
-        });
-
-        cadastroFilmeLabelCodigoFilme.setText("Código do filme:");
-
-        cadastroFilmeLabelNomeFilme.setText("Nome do filme:");
-
-        cadastroFilmeLabelGenero.setText("Gênero(s):");
-
-        cadastroFilmeLabelIdioma.setText("Idioma:");
-
-        cadastroFilmeLabelDuracao.setText("Duração(min):");
-
-        cadastroFilmeLabelClassificacaoIndicativa.setText("Classificação indicativa:");
-
-        cadastroFilmeComboBoxClassificacaoIndicativa.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "<Selecione uma das opções>", "Livre", "10", "12", "14", "16", "18" }));
-        cadastroFilmeComboBoxClassificacaoIndicativa.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cadastroFilmeComboBoxClassificacaoIndicativaActionPerformed(evt);
-            }
-        });
-
-        jLabel7.setText("Cadastro de Filmes");
-
-        cadastroFilmeComboBoxIdioma.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "<Selecione uma das opções>", "Áudio Original", "Dublado", "Legendado" }));
-        cadastroFilmeComboBoxIdioma.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cadastroFilmeComboBoxIdiomaActionPerformed(evt);
-            }
-        });
-
-        cadastroFilmeTextfieldCodigoFilme.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cadastroFilmeTextfieldCodigoFilmeActionPerformed(evt);
+                cadastroFilmeTextfieldDuracaoActionPerformed(evt);
             }
         });
 
@@ -100,9 +84,192 @@ public class CadastroFilmes extends javax.swing.JFrame {
             }
         });
 
-        cadastroFilmeTextfieldDuracao.addActionListener(new java.awt.event.ActionListener() {
+        cadastroFilmeComboBoxIdioma.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "<Selecione uma das opções>", "Áudio Original", "Dublado", "Legendado" }));
+        cadastroFilmeComboBoxIdioma.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cadastroFilmeTextfieldDuracaoActionPerformed(evt);
+                cadastroFilmeComboBoxIdiomaActionPerformed(evt);
+            }
+        });
+
+        cadastroFilmeComboBoxClassificacaoIndicativa.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "<Selecione uma das opções>", "Livre", "10", "12", "14", "16", "18" }));
+        cadastroFilmeComboBoxClassificacaoIndicativa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cadastroFilmeComboBoxClassificacaoIndicativaActionPerformed(evt);
+            }
+        });
+
+        cadastroFilmeLabelNomeFilme.setText("Nome do filme:");
+
+        cadastroFilmeLabelGenero.setText("Gênero(s):");
+
+        cadastroFilmeLabelCodigoFilme.setText("Código do filme:");
+
+        cadastroFilmeLabelDuracao.setText("Duração(min):");
+
+        cadastroFilmeLabelClassificacaoIndicativa.setText("Classificação indicativa:");
+
+        cadastroFilmeLabelIdioma.setText("Idioma:");
+
+        cadastroFilmeBtnConfirmar.setText("Confirmar");
+        cadastroFilmeBtnConfirmar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cadastroFilmeBtnConfirmarActionPerformed(evt);
+            }
+        });
+
+        cadastroFilmeBtnConfirmar1.setText("Editar");
+        cadastroFilmeBtnConfirmar1.setEnabled(false);
+        cadastroFilmeBtnConfirmar1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cadastroFilmeBtnConfirmar1ActionPerformed(evt);
+            }
+        });
+
+        cadastroFilmeTextfieldCodigoFilme.setText("0");
+        cadastroFilmeTextfieldCodigoFilme.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cadastroFilmeTextfieldCodigoFilmeActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(23, 23, 23)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(cadastroFilmeLabelNomeFilme)
+                            .addComponent(cadastroFilmeLabelGenero)
+                            .addComponent(cadastroFilmeLabelIdioma, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cadastroFilmeLabelCodigoFilme)
+                            .addComponent(cadastroFilmeLabelDuracao)
+                            .addComponent(cadastroFilmeLabelClassificacaoIndicativa))
+                        .addGap(61, 61, 61)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(cadastroFilmeTextfieldDuracao, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cadastroFilmeComboBoxClassificacaoIndicativa, javax.swing.GroupLayout.PREFERRED_SIZE, 323, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cadastroFilmeTextfieldNomeFilme, javax.swing.GroupLayout.PREFERRED_SIZE, 382, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cadastroFilmeTextfieldCodigoFilme, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cadastroFilmeTextfieldGenero, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cadastroFilmeComboBoxIdioma, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(209, 209, 209)
+                        .addComponent(cadastroFilmeBtnConfirmar, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(cadastroFilmeBtnConfirmar1, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(477, Short.MAX_VALUE))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(14, 14, 14)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(cadastroFilmeLabelCodigoFilme)
+                    .addComponent(cadastroFilmeTextfieldCodigoFilme, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(9, 9, 9)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cadastroFilmeLabelNomeFilme)
+                    .addComponent(cadastroFilmeTextfieldNomeFilme, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(9, 9, 9)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cadastroFilmeLabelGenero)
+                    .addComponent(cadastroFilmeTextfieldGenero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(9, 9, 9)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cadastroFilmeLabelIdioma)
+                    .addComponent(cadastroFilmeComboBoxIdioma, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(6, 6, 6)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cadastroFilmeLabelDuracao)
+                    .addComponent(cadastroFilmeTextfieldDuracao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cadastroFilmeComboBoxClassificacaoIndicativa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cadastroFilmeLabelClassificacaoIndicativa))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cadastroFilmeBtnConfirmar)
+                    .addComponent(cadastroFilmeBtnConfirmar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jTable1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
+            },
+            new String [] {
+                "Código", "Nome do Filme", "Gênero", "Idioma", "Duração", "Classificação", "Final"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, true
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(jTable1);
+        if (jTable1.getColumnModel().getColumnCount() > 0) {
+            jTable1.getColumnModel().getColumn(1).setPreferredWidth(400);
+        }
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 980, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(56, Short.MAX_VALUE))
+        );
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel1.setText("Cadastro de Filmes");
+
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/5482890321606261170-128.png"))); // NOI18N
+        jLabel5.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+
+        jButton5.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jButton5.setText("Fechar");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
             }
         });
 
@@ -110,68 +277,36 @@ public class CadastroFilmes extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(130, 130, 130)
-                        .addComponent(jLabel7))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(cadastroFilmeLabelNomeFilme)
-                                    .addComponent(cadastroFilmeLabelGenero)
-                                    .addComponent(cadastroFilmeLabelIdioma, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(cadastroFilmeLabelCodigoFilme)
-                                    .addComponent(cadastroFilmeLabelDuracao)
-                                    .addComponent(cadastroFilmeBtnConfirmar))
-                                .addGap(53, 53, 53))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(cadastroFilmeLabelClassificacaoIndicativa)
-                                .addGap(18, 18, 18)))
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(cadastroFilmeComboBoxClassificacaoIndicativa, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(cadastroFilmeComboBoxIdioma, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(cadastroFilmeTextfieldCodigoFilme)
-                            .addComponent(cadastroFilmeTextfieldNomeFilme)
-                            .addComponent(cadastroFilmeTextfieldGenero)
-                            .addComponent(cadastroFilmeTextfieldDuracao))))
-                .addGap(94, 94, 94))
+                .addGap(16, 16, 16)
+                .addComponent(jLabel5)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 576, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton5)
+                .addGap(44, 44, 44))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(169, 169, 169)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(60, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(10, 10, 10)
-                .addComponent(jLabel7)
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(cadastroFilmeLabelCodigoFilme)
-                    .addComponent(cadastroFilmeTextfieldCodigoFilme, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(9, 9, 9)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cadastroFilmeLabelNomeFilme)
-                    .addComponent(cadastroFilmeTextfieldNomeFilme, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(9, 9, 9)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cadastroFilmeLabelGenero)
-                    .addComponent(cadastroFilmeTextfieldGenero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel5)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButton5)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(cadastroFilmeLabelIdioma)
-                    .addComponent(cadastroFilmeComboBoxIdioma, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(9, 9, 9)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cadastroFilmeLabelDuracao)
-                    .addComponent(cadastroFilmeTextfieldDuracao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cadastroFilmeComboBoxClassificacaoIndicativa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cadastroFilmeLabelClassificacaoIndicativa))
-                .addGap(18, 18, 18)
-                .addComponent(cadastroFilmeBtnConfirmar)
-                .addContainerGap(44, Short.MAX_VALUE))
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(24, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -182,82 +317,108 @@ public class CadastroFilmes extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 33, Short.MAX_VALUE))
         );
 
-        pack();
+        setSize(new java.awt.Dimension(1235, 619));
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
     
-    String[] informacoesCadastroFilme = new String [1];
-    String[][] informacoesFilmesCadastrados = new String[20][6]; 
+   
+    int i = 0;
     
     private void cadastroFilmeBtnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastroFilmeBtnConfirmarActionPerformed
         // TODO O CÓDIGO RELATIVO AO BOTÃO "Confirmar":
   
-        informacoesCadastroFilme[0] = cadastroFilmeTextfieldDuracao.getText();
-        String texto = cadastroFilmeTextfieldDuracao.getText();
+        Boolean erroDetectado;        
+        erroDetectado = false;
+        
+        String auxiliar = cadastroFilmeTextfieldDuracao.getText();
         try{
-            int valorEmInteiro = Integer.parseInt(texto);
+            int valorEmInteiro = Integer.parseInt(auxiliar);
             
         }catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(null, "O campo referente a duração do filme não foi preenchido corretamente", null, WIDTH);
+            erroDetectado = true;
         }
+        
+        if(this.cadastroFilmeTextfieldNomeFilme.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "O campo referente ao nome do filme não foi preenchido corretamente", null, WIDTH);
+            erroDetectado = true;
+        }
+
+        if(this.cadastroFilmeTextfieldGenero.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "O campo referente ao gênero do filme não foi preenchido corretamente", null, WIDTH);
+            erroDetectado = true;
+        }
+
         
         if(cadastroFilmeComboBoxIdioma.getSelectedItem().equals("<Selecione uma das opções>")){
             JOptionPane.showMessageDialog(null, "O campo referente ao idioma não foi preenchido corretamente", null, WIDTH);
+            erroDetectado = true;
         }
         
         if(cadastroFilmeComboBoxClassificacaoIndicativa.getSelectedItem().equals("<Selecione uma das opções>")){
             JOptionPane.showMessageDialog(null, "O campo referente a classificação indicativa não foi preenchido corretamente", null, WIDTH);
+            erroDetectado = true;
         }   
-        //SALVANDO DADOS NA  MATRIZ PARA CRIAR UM FILME:
-        for (int i = 0; i < informacoesFilmesCadastrados.length; i++) {
-            
-            informacoesFilmesCadastrados[i][0]=cadastroFilmeTextfieldCodigoFilme.getText();
-            informacoesFilmesCadastrados[i][1]=cadastroFilmeTextfieldNomeFilme.getText();
-            informacoesFilmesCadastrados[i][2]=cadastroFilmeTextfieldGenero.getText();
-            
+        
+        if (erroDetectado != true){            
+            //SALVANDO DADOS NA  MATRIZ PARA CRIAR UM FILME:            
+            int i = Integer.valueOf(cadastroFilmeTextfieldCodigoFilme.getText());
+
+            filmesCadastrados[0][0]=cadastroFilmeTextfieldCodigoFilme.getText();
+            filmesCadastrados[0][1]=cadastroFilmeTextfieldNomeFilme.getText();
+            filmesCadastrados[0][2]=cadastroFilmeTextfieldGenero.getText();
+
             //O que foi selecionado na comboBox idioma?
             if(cadastroFilmeComboBoxIdioma.getSelectedItem().equals("Áudio Original")){
-                informacoesFilmesCadastrados[i][3]= "Áudio Original";    
+                filmesCadastrados[0][3]= "Áudio Original";    
             }
             if(cadastroFilmeComboBoxIdioma.getSelectedItem().equals("Dublado")){
-                informacoesFilmesCadastrados[i][3]= "Dublado"; 
+                filmesCadastrados[0][3]= "Dublado"; 
             }
            if(cadastroFilmeComboBoxIdioma.getSelectedItem().equals("Legendado")){
-               informacoesFilmesCadastrados[i][3]= "Legendado";
+               filmesCadastrados[0][3]= "Legendado";
             }
-            
-           informacoesFilmesCadastrados[i][4]= cadastroFilmeTextfieldDuracao.getText();
-            
+
+           filmesCadastrados[0][4]= cadastroFilmeTextfieldDuracao.getText();
+
             //O que foi selecionado na comboBox Classificação Indicativa?
             if(cadastroFilmeComboBoxClassificacaoIndicativa.getSelectedItem().equals("Livre")){
-                informacoesFilmesCadastrados[i][5]= "Livre";
+                filmesCadastrados[0][5]= "Livre";
             }
             if(cadastroFilmeComboBoxClassificacaoIndicativa.getSelectedItem().equals("10")){
-                informacoesFilmesCadastrados[i][5]= "10";
+                filmesCadastrados[0][5]= "10";
             }
             if(cadastroFilmeComboBoxClassificacaoIndicativa.getSelectedItem().equals("12")){
-                informacoesFilmesCadastrados[i][5]= "12";
+                filmesCadastrados[0][5]= "12";
             }
             if(cadastroFilmeComboBoxClassificacaoIndicativa.getSelectedItem().equals("14")){
-                informacoesFilmesCadastrados[i][5]= "Livre";
+                filmesCadastrados[0][5]= "14";
             }
             if(cadastroFilmeComboBoxClassificacaoIndicativa.getSelectedItem().equals("16")){
-                informacoesFilmesCadastrados[i][5]= "16";
+                filmesCadastrados[0][5]= "16";
             }
             if(cadastroFilmeComboBoxClassificacaoIndicativa.getSelectedItem().equals("18")){
-                informacoesFilmesCadastrados[i][5]= "Livre";
+                filmesCadastrados[0][5]= "18";
             }            
+
+            if (Filmes.adicionarNovoFilme(filmesCadastrados)){
+                JOptionPane.showMessageDialog(null, "O filme foi cadastrado com sucesso!");                                        
+            }   
+            
+            cadastroFilmeTextfieldCodigoFilme.setText(String.valueOf(i));         
+            Filmes.novoFilmeIndice = i;
+            i = i+1;                    
+            carregaFilmes();
+            LimpaControles();        
         }
-        
-        /*for(int i = 0;i<informacoesFilmesCadastrados.length; i++){
-            //TESTE EM CONSOLE
-            for (int j = 0; j < informacoesFilmesCadastrados[i].length; j++) {
-                System.out.println(informacoesFilmesCadastrados[i][j]);
-            }
-        }
-        */
+
+        cadastroFilmeTextfieldCodigoFilme.requestFocus();        
+
         
     }//GEN-LAST:event_cadastroFilmeBtnConfirmarActionPerformed
 
@@ -284,6 +445,30 @@ public class CadastroFilmes extends javax.swing.JFrame {
     private void cadastroFilmeTextfieldDuracaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastroFilmeTextfieldDuracaoActionPerformed
         // Código referente ao campo de texto "Duração(min)":
     }//GEN-LAST:event_cadastroFilmeTextfieldDuracaoActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void cadastroFilmeBtnConfirmar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastroFilmeBtnConfirmar1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cadastroFilmeBtnConfirmar1ActionPerformed
+
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+        
+        try {
+            Point point = evt.getPoint();
+            int coluna = jTable1.rowAtPoint(point);        
+            int SessaoAtiva = 0;
+            SessaoAtiva = this.jTable1.getSelectedRow();        
+            MostraFilmes(SessaoAtiva);            
+        } catch (Exception e) {
+        }
+            
+
+        
+        
+    }//GEN-LAST:event_jTable1MouseClicked
 
     /**
      * @param args the command line arguments
@@ -321,8 +506,59 @@ public class CadastroFilmes extends javax.swing.JFrame {
         });
     }
 
+    
+    private void MostraFilmes(int CodigoFilme ){
+        
+        if (CodigoFilme <= Filmes.QuantidadeAtualFilmesCadastrados()){
+            cadastroFilmeTextfieldCodigoFilme.setText(filmesCadastrados[CodigoFilme][0]);
+            cadastroFilmeTextfieldNomeFilme.setText(filmesCadastrados[CodigoFilme][1]);
+            cadastroFilmeTextfieldGenero.setText(filmesCadastrados[CodigoFilme][2]);
+            cadastroFilmeComboBoxIdioma.setSelectedItem(filmesCadastrados[CodigoFilme][3]);
+            cadastroFilmeTextfieldDuracao.setText(filmesCadastrados[CodigoFilme][4]);
+            cadastroFilmeComboBoxClassificacaoIndicativa.setSelectedItem(filmesCadastrados[CodigoFilme][5]);           
+            cadastroFilmeTextfieldNomeFilme.requestFocus();                    
+        }else JOptionPane.showMessageDialog(null, "O filme selecionado não é válido!"+CodigoFilme);
+    }
+    
+    private void LimpaControles(){
+
+        cadastroFilmeTextfieldCodigoFilme.setText(String.valueOf(Filmes.QuantidadeAtualFilmesCadastrados()));
+        cadastroFilmeTextfieldNomeFilme.setText("");
+        cadastroFilmeTextfieldGenero.setText("");
+        cadastroFilmeComboBoxIdioma.setSelectedItem("Áudio Original");
+        cadastroFilmeTextfieldDuracao.setText("0");
+        cadastroFilmeComboBoxClassificacaoIndicativa.setSelectedItem("Livre");           
+        cadastroFilmeTextfieldNomeFilme.requestFocus();    
+    }
+    
+    private void carregaFilmes(){
+        
+        String[][] tabelaFilmes = Filmes.informacoesFilmesCadastrados;
+        DefaultTableModel model= (DefaultTableModel) jTable1.getModel();
+        model.setNumRows(0);
+        String[] coluna = new String[6];
+        for (int i = 0; i < Filmes.QuantidadeAtualFilmesCadastrados(); i++) {
+            if (tabelaFilmes[i][0] != ""){
+                coluna[0] = tabelaFilmes[i][0];
+                coluna[1] = tabelaFilmes[i][1];
+                coluna[2] = tabelaFilmes[i][2];
+                coluna[3] = tabelaFilmes[i][3];
+                coluna[4] = tabelaFilmes[i][4];
+                coluna[5] = tabelaFilmes[i][5];
+                model.addRow(coluna);
+            }
+        }    
+        
+                    
+        //int codigoFilme =0;
+        //codigoFilme = (int) this.jTable1.getValueAt(this.jTable1.getSelectedRow(), 0);
+        //MostraFilmes(codigoFilme);
+        
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton cadastroFilmeBtnConfirmar;
+    private javax.swing.JButton cadastroFilmeBtnConfirmar1;
     private javax.swing.JComboBox<String> cadastroFilmeComboBoxClassificacaoIndicativa;
     private javax.swing.JComboBox<String> cadastroFilmeComboBoxIdioma;
     private javax.swing.JLabel cadastroFilmeLabelClassificacaoIndicativa;
@@ -335,7 +571,13 @@ public class CadastroFilmes extends javax.swing.JFrame {
     private javax.swing.JTextField cadastroFilmeTextfieldDuracao;
     private javax.swing.JTextField cadastroFilmeTextfieldGenero;
     private javax.swing.JTextField cadastroFilmeTextfieldNomeFilme;
-    private javax.swing.JLabel jLabel7;
+    private javax.swing.JButton jButton5;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
 }
