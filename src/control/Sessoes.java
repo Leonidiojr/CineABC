@@ -33,7 +33,7 @@ public class Sessoes {
     
     public static int TopListSessoesPorCadeiras(int codigoSessao){
         
-        String[][] TopListSessoesPorCadeirasTmp = new String[10][8];
+        String[][] TopListSessoesPorCadeirasTmp = new String[1000][8];
         
         
         
@@ -53,11 +53,11 @@ public class Sessoes {
         
         int linhas, colunas, sessoes;
         
-        linhas = cadastroSessoes.length;
+        linhas = 20;
         colunas =1;
         sessoes = 0;
                       
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < linhas; i++) {
             cadastroSessoes[i][0] = String.valueOf(i);
             cadastroSessoes[i][1] = "1";
             cadastroSessoes[i][2] = "19:00";                            
@@ -78,7 +78,7 @@ public class Sessoes {
         colunas =1;
         sessoes = 0;
                       
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < linhas; i++) {
             if (cadastroSessoes[i][1] != null) {                    
                 sessoes = sessoes + 1;    
             }            

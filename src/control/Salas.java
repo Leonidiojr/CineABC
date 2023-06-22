@@ -10,7 +10,7 @@ package control;
  */
 public class Salas {
     
-    public static int[][] listaSalasCadastradas = new int[10][4];
+    public static int[][] listaSalasCadastradas = new int[1000][4];
     
     //Código automático para preenchimento de dados
     public static void PreencheListaAtualSalasCadastradas() {
@@ -40,7 +40,7 @@ public class Salas {
         colunas =4;
         salas = 0;
         cadeiras = 0;
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < Salas.listaSalasCadastradas.length; i++) {
             if (listaSalasCadastradas[i][1] != 0)  {                    
                 salas = salas + 1;    
                 cadeiras = listaSalasCadastradas[i][1] * listaSalasCadastradas[i][2];
@@ -58,7 +58,7 @@ public class Salas {
         colunas =4;
         salas = 0;
         cadeiras = 0;
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < Salas.listaSalasCadastradas.length; i++) {
             if (listaSalasCadastradas[i][0] != 0)  {                    
                 cadeiras = listaSalasCadastradas[i][1] * listaSalasCadastradas[i][2];
             }                                                                    

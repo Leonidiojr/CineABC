@@ -21,7 +21,7 @@ import control.Vendas;
  */
 
 public class Cadeiras {
-    public static int[][] cadeiras = new int[20][50];
+    public static int[][] cadeiras = new int[1000][50];
     public static int novaCadeiraIndice=0;    
 
     public static void PreencheAleatorio() {

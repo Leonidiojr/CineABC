@@ -145,11 +145,17 @@ public static String MelhorOcupacaodeCadeirasPorSessao(){
         for (int i = 0; i < Filmes.QuantidadeAtualFilmesCadastrados(); i++) {                                                                                                                                
         
             nomeFilme = Filmes.informacoesFilmesCadastrados[i][1];
-            TopListFilmes[i][0]= nomeFilme;
-            quantTickets = Vendas.numeroTickets(nomeFilme);
-            valorVenda = Vendas.SomaValorTickets(nomeFilme);                        
-            TopListFilmes[i][1]= String.valueOf(quantTickets);
-            TopListFilmes[i][2]= String.valueOf(valorVenda);                                                                                                                                                    
+            if (nomeFilme != ""){
+                TopListFilmes[i][0]= nomeFilme;
+                quantTickets = Vendas.numeroTickets(nomeFilme);
+                valorVenda = Vendas.SomaValorTickets(nomeFilme);                        
+                TopListFilmes[i][1]= String.valueOf(quantTickets);
+                TopListFilmes[i][2]= String.valueOf(valorVenda);
+            } else{
+                
+            } 
+    
+                
             
         }            
         

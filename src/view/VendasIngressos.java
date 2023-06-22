@@ -30,7 +30,7 @@ public class VendasIngressos extends javax.swing.JFrame {
     /**
      * Creates new form SelecaoFilmes
      */
-    int[][] cadeirasOcupadas = new int[20][50];        
+    int[][] cadeirasOcupadas = new int[1000][50];        
     
     public VendasIngressos() {
         

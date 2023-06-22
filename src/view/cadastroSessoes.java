@@ -478,7 +478,7 @@ public class cadastroSessoes extends javax.swing.JFrame {
         model.setNumRows(0);
         String[] coluna = new String[5];
         for (int i = 0; i < Sessoes.cadastroSessoes.length; i++) {
-            if (tabelaSessoes[i][1] != null){
+            if (tabelaSessoes[i][3] != null){
                 coluna[0] = tabelaSessoes[i][0];
                 coluna[1] = tabelaSessoes[i][1];
                 coluna[2] = tabelaSessoes[i][3];

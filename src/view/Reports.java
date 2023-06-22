@@ -32,7 +32,7 @@ public class Reports extends javax.swing.JFrame {
         model.setNumRows(0);
         String[] coluna = new String[10];
         for (int i = 0; i < Vendas.informacoesVendasEfetuadas.length; i++) {
-            if (tabelaVendas[i][3] != null) {
+            if (tabelaVendas[i][1] != null) {
                 coluna[0] = tabelaVendas[i][0];
                 coluna[1] = tabelaVendas[i][1];
                 coluna[2] = tabelaVendas[i][2];

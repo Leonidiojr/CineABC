@@ -33,14 +33,14 @@ public class Filmes {
         }          
         
         informacoesFilmesCadastrados[0][1]="O Senhor dos Anéis: O Retorno do Rei";
-        informacoesFilmesCadastrados[1][1]="Interestelar";
+        informacoesFilmesCadastrados[1][1]="Interestelar ";
         informacoesFilmesCadastrados[2][1]="Pulp Fiction: Tempo de Violência";
         informacoesFilmesCadastrados[3][1]="A Origem";
         informacoesFilmesCadastrados[4][1]="Clube da Luta";
         informacoesFilmesCadastrados[5][1]="Matrix";
         informacoesFilmesCadastrados[6][1]="O Poderoso Chefão";
         informacoesFilmesCadastrados[7][1]="A Viagem de Chihiro";
-        informacoesFilmesCadastrados[8][1]="Interestelar";
+        informacoesFilmesCadastrados[8][1]="Interestelar 2";
         informacoesFilmesCadastrados[9][1]="Cidade de Deus";
         informacoesFilmesCadastrados[10][1]="Gladiador";
         informacoesFilmesCadastrados[11][1]="O Labirinto do Fauno";
